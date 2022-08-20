@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [Tooltip("プレイヤーの移動速度")]
+    [Header("プレイヤーの移動速度")]
     [SerializeField] float _speed = 5.0f;
     // speedの制御
     public float Speed => _speed;
-    [Tooltip("プレイヤーのジャンプ力")]
+    [Header("プレイヤーのジャンプ力")]
     [SerializeField] private float _force = 250.0f;
     // プレイヤーのRigidbody
     Rigidbody2D m_rb = default;
