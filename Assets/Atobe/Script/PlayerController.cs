@@ -8,16 +8,16 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [Header("発射する弾のプレハブ")]
+    [Tooltip("発射する弾のプレハブ")]
     [SerializeField] GameObject _bulletPrefab = default;
-    [Header("マズルのプレハブ")]
+    [Tooltip("マズルのプレハブ")]
     [SerializeField] Transform _muzzle = default;
-    [Header("プレイヤーの移動速度")]
+    [Tooltip("プレイヤーの移動速度")]
     [SerializeField] float _speed = 5.0f;
-    [Header("プレイヤーのジャンプ力")]
+    [Tooltip("プレイヤーのジャンプ力")]
     [SerializeField] private float _force = 250.0f;
 
-    public float Speed => _speed; // speed の制御
+    public float Speed => _speed;
     // プレイヤーの Rigidbody
     Rigidbody2D m_rb = default;
     // 二段ジャンプの真偽
@@ -83,6 +83,13 @@ public class PlayerController : MonoBehaviour
             FlipX(m_h);
         }
     }
+
+    private void FixedUpdate()
+    {
+        // 力を加えるのは FixedUpdate で行う
+        m_rb.AddForce(Vector2.right * m_h * _speed, ForceMode2D.Force);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Ground に触れているとき
@@ -91,11 +98,6 @@ public class PlayerController : MonoBehaviour
             _isGround = true;
             Debug.Log("地面にこんにちは");
         }
-    }
-    private void FixedUpdate()
-    {
-        // 力を加えるのは FixedUpdate で行う
-        m_rb.AddForce(Vector2.right * m_h * _speed, ForceMode2D.Force);
     }
 
     // Player の向きに関するブロック

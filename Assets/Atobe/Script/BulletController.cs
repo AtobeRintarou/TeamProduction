@@ -8,9 +8,9 @@ using UnityEngine;
 /// </summary>
 public class BulletController : MonoBehaviour
 {
-    [Header("発射する弾のスピード")]
+    [Tooltip("発射する弾のスピード")]
     [SerializeField] float _speed = 3f;
-    [Header("発射する弾のライフタイム")]
+    [Tooltip("発射する弾のライフタイム")]
     [SerializeField] float _lifeTime = 5f;
 
     public PlayerController a = null;
